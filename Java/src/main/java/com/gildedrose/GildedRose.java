@@ -48,17 +48,21 @@ class GildedRose {
 
     private void updateQualityAndSellinOfBackstage(int i) {
         if (items[i].sellIn > 0 && items[i].quality < 50) {
-                if (items[i].sellIn >= 11) {
-                    items[i].quality++;
-                } else if (items[i].sellIn < 6) {
-                        updateQualityValue(i,3);
-                } else if (items[i].sellIn < 11) {
-                    updateQualityValue(i,2);;
-                }
+               updateBackstageQuality(i, items[i].sellIn);
             } else {
                 items[i].quality = 0;
             }
         updateSellInValue(i);
+    }
+
+    private void updateBackstageQuality(int i, int sellInDays) {
+        if (sellInDays >= 11) {
+            updateQualityValue(i,1);
+        } else if (sellInDays < 6) {
+            updateQualityValue(i,3);
+        } else if (sellInDays < 11) {
+            updateQualityValue(i,2);;
+        }
     }
 
     private void updateQualityAndSellinOfBrie(int i) {
